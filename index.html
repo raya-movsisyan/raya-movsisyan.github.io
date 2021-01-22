@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>happy birthday</title>
+    <style>
+      .game {
+        height: 200px;
+        width: 600px;
+        border-bottom: 4px solid #000;
+        margin: 200px auto;
+      }
+      #raya {
+        width: 30px;
+        height: 100px;
+        background: url(rrr.png) center center/cover no-repeat;
+        position: relative;
+        top: 100px;
+        z-index: 1;
+      }
+      .text {
+        width: 350px;
+        height: 200px;
+        background: url("qwe.png") center center/cover no-repeat;
+        position: absolute;
+        top: -200px;
+        display: none;
+      }
+      .text.activeText {
+        display: block;
+      }
+      #gift {
+        width: 60px;
+        height: 60px;
+        background: url(gift.png) center center/cover no-repeat;
+        position: relative;
+        top: 40px;
+        left: 300px;
+        animation: giftMove 1s infinite linear;
+      }
+      .jump {
+        animation: jump 0.5s linear;
+      }
+      @keyframes jump {
+        0% {
+          top: 100px;
+        }
+        30% {
+          top: 35px;
+        }
+        50% {
+          top: 10px;
+        }
+        80% {
+          top: 35px;
+        }
+        100% {
+          top: 100px;
+        }
+      }
+      @keyframes giftMove {
+        0% {
+          left: 580px;
+        }
+        100% {
+          left: 5px;
+        }
+      }
+      video {
+        width: 100%;
+        height: 600px;
+      }
+      .video {
+        background: #000;
+      }
+      h2 {
+        text-align: center;
+        margin-top: 100px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        border: 2px solid red;
+        padding: 0;
+        background: white;
+      }
+      .cont{
+          background: url(bg.png) center center/cover ;
+      }
+      .game{
+          background: #dfaeb6 ;
+
+      }
+      a{
+          background: yellow;
+          border: 2px red solid
+      }
+      .vvv{
+          width: 100%;
+          min-height: 500px;
+      }
+      .vvv iframe{
+          width: 100%;
+          height: 800px;
+      }
+      .arrow{
+        display: none;
+        width: 300px;
+        height: 100px;
+        position: absolute;
+        background: url('arrow.png') center center/cover no-repeat ;
+        top: 0;
+        left: 400px;
+        z-index: 10;
+      }
+      h5{
+          padding-left: 150px;
+      }
+      .active{
+          animation: arrowMove 0.3s infinite ease-in alternate;
+          display: block;
+      }
+      @keyframes arrowMove{
+          0% {
+              left: 350px;
+          }
+          100% {
+              left: 250px;
+          }
+      }
+      .formedia{
+          display: none;
+      }
+      @media (min-width: 768px) {
+          .formedia{
+              display: block;
+
+          }
+          .sorry{
+              display: none;
+          }
+      }
+    </style>
+  </head>
+  <div class="sorry">
+      <p style="font-size: 24px; color:red">Внимание!</p>
+      Извините но у автора данного проекта не хватило компетенций оптимизировать его под мобильные экраны. пожалуйста зайдите с компьютера, надеюсь он у Вас есть!</div>
+<div class="formedia">
+    <audio src="111.mp3" loop controls autoplay id="audio"></audio>
+    <div  class="arrow">
+        <br>
+        <h5>              для особо одаренных</h5>
+    </div>
+     <div class="cont">
+        <body>
+            <div class="video">
+              <video src="111.mp4" autoplay muted loop></video>
+            </div>
+            <div class="all">
+              <h2>НАЖМИТЕ НА ЛЮБУЮ КЛАВИШУ И РАЯ НАЧНЕТ СОБИРАТЬ ПОДАРКИ</h2>
+              <div class="game">
+                <div id="raya">
+                  <div class="text" id="text"></div>
+                </div>
+                <div id="gift"></div>
+              </div>
+            </div>
+     </div>
+     <div class="video2">
+         <h2>НЕ ЗАБУДЬ ВЫКЛЮЧИТЬ ФОНОВУЮ МУЗЫКУ В САМОМ ВЕРХУ</h2>
+         <h2>если не найдешь НАЖМИ <a id='here' href="#audio" onclick="forArrow()">СЮДА</a>   Я ПОКАЖУ!))</h2>
+         <div class="vvv">
+            <iframe src="https://www.youtube.com/embed/mjYZDJj-nLw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         </div>
+    
+         
+     </div>
+</div>
+    <script>
+      let text = document.getElementById("text");
+      let raya = document.getElementById("raya");
+      let gift = document.getElementById("gift");
+
+      document.addEventListener("keydown", function (event) {
+        jump();
+      });
+
+      function jump() {
+        if (raya.classList != "jump") {
+          raya.classList.add("jump");
+          text.classList.add("activeText");
+        } else {
+          setTimeout(() => {
+            raya.classList.remove("jump");
+            text.classList.remove("activeText");
+          }, 10);
+        }
+      }
+
+      let isAlive = setInterval(() => {
+        let endRaya = parseInt(
+          window.getComputedStyle(raya).getPropertyValue("top")
+        );
+        let endGift = parseInt(
+          window.getComputedStyle(gift).getPropertyValue("left")
+        );
+        if (endGift < 30 && endGift > 0 && endRaya >= 140) {
+          alert("game over");
+        }
+      }, 10);
+
+    //   let here = document.getElementById('here');
+      function forArrow(){
+            let arrow= document.querySelector('.arrow');
+            arrow.classList.add('active');
+      }
+    </script>
+  </body>
+</html>
